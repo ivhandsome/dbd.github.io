@@ -1,0 +1,122 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+.bigbox {
+	width: 100%;
+	background: paleturquoise;
+	overflow: hidden;
+}
+
+.navs {
+	width: 100%;
+	height: 50px;
+	background: palevioletred;
+	list-style: none;
+}
+
+.navs li {
+	float: left;
+	width: 20%;
+	height: 100%;
+	background: peachpuff;
+	font-size: 30px;
+	text-align: center;
+	line-height: 50px;
+}
+
+a {
+	text-decoration: none
+}
+
+.carouselBox {
+	width: 100%;
+	/*height: 350px;*/
+	/*background: red;*/
+	padding-top: 25px;
+	box-sizing: border-box;
+	position: relative;
+	font-size: 30px;
+}
+
+.carousel {
+	width: 100%;
+	height: 300px;
+	background: blue;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.carousel ul li img {
+	width: 100%;
+	height: 100%;
+}
+
+#iconUl {
+	/*height: 15px, transition: 1.5s, position: absolute, top: 0, right: 0,;*/
+	/*width: 100px;*/
+	/*background: black;*/
+	width: 100px;
+	height: 50px;
+	background: palegreen;
+	position: absolute;
+	right:0;
+	
+}
+
+#iconUl li {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: white;
+	float: left;
+	margin-left: 5px;
+}
+
+.iconNum {
+	position: absolute;
+	right: 0;
+	/*bottom: 0;*/
+}
+#carUl{
+	height: 100%;
+	transition: 0.5s;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#carUl li{
+	height: 100%;
+	float: left;
+}
+#recommends{
+	width: 100%;
+	height: 350px;
+	background: palegreen;
+}
+#recommends li{
+	width: 180px;
+	height: 130px;
+	margin-left: 25px;
+	margin-top:30px;
+	font-size: 20px;
+	color: white;
+	float: left;
+	background: red;
+	position: relative;
+}
+#recommends li p{
+	position: absolute;
+	right: 0;
+}
+#recommends li img{
+	width: 100%;
+	height: 100%;
+}
+

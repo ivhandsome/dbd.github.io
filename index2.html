@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=640,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/index2Css.css" />
+		<script src="js/data.js"></script>
+		<script src="js/Handle.js"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<div class='bigbox'>
+			<ul class="navs">
+				<li>
+					<a href="">首页</a>
+				</li>
+				<li>
+					<a href="">推荐</a>
+				</li>
+				<li>
+					<a href="">排行榜</a>
+				</li>
+				<li>
+					<a href="">会员</a>
+				</li>
+				<li>
+					<a href="login.html">登录</a>
+				</li>
+			</ul>
+			<div class="carouselBox">
+				<div class="carousel">
+					<ul id="carUl">
+					</ul>
+				</div>
+				<ul id="iconUl">
+					<li style="background: black;"></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="carouselBox">
+				<p>推荐歌单</p>
+				<ul id="recommends" style="width: 100%;"></ul>
+			</div>
+			<audio id="play">
+				<source src="img/刘瑞琦 - 七里香.mp3"></source>
+			</audio>
+			<button style="height: 60px;" id="btn" onclick="play()">播放暂停</button>
+		</div>
+	</body>
+	<script>
+		var carUl = document.getElementById('carUl');
+		var carLi = carUl.getElementsByTagName('li');
+		var iconUl = document.getElementById('iconUl');
+		var iconLi = iconUl.getElementsByTagName('li');
+		var recommends = document.getElementById('recommends');
+		var recLi = recommends.getElementsByTagName('li');
+		var recP = recommends.getElementsByTagName('p');
+		var recommendNum = 0;
+		var timer = setInterval(move, 3500);
+		rendering(data.imgs);
+		recommend(data.recommend);
+		addRecom(recLi);
+		carUl.style.width = window.innerWidth * carLi.length + 'px';
+		//轮播图手指触碰事件/////////////////////////////////////////////////////////////
+		carUl.addEventListener('touchstart', function(ev) {
+				clearInterval(timer);
+			carUl.style.transition = 'none';
+			startX = ev.changedTouches[0].pageX;
+			startY = ev.changedTouches[0].pageY;
+			now = disx;
+			console.log(startX, startY);
+		});
+
+		//轮播图手指移动事件/////////////////////////////////////////////////////////////
+		carUl.addEventListener('touchmove', function(ev) {
+			if(winNum != 5) {
+				moveX = ev.changedTouches[0].pageX;
+				moveY = ev.changedTouches[0].pageY;
+				num = Math.round(disx / document.documentElement.clientWidth);
+				disx = now - (moveX - startX);
+				if(disx < 0) {
+					disx = 0;
+					carUl.style.left = -disx + 'px';
+				} else if(disx > parseInt(carUl.style.width) / 2.5) {
+					disx = parseInt(carUl.style.width) / 2.5;
+					carUl.style.left = -disx + 'px';
+				}
+				carUl.style.left = -disx + 'px';
+			}
+		});
+		//轮播图手指抬起事件/////////////////////////////////////////////////////////////
+		carUl.addEventListener('touchend', function(ev) {
+			endX = ev.changedTouches[0].pageX;
+			endY = ev.changedTouches[0].pageY;
+			disy = endY - startY;
+			var mouseX = endX - startX;
+			var mouseY = endY - startY;
+			if(Math.abs(mouseX) > Math.abs(mouseY)) {
+				if(mouseX < 0) { //左滑
+					if(disx > winNum * winWidth + winWidth / 2) {
+						winNum++;
+						liNum++;
+						//						console.log(num)
+						for(var i = 0; i < iconLi.length; i++) {
+							iconLi[i].style.background = 'white'
+						};
+						iconLi[num].style.background = 'black';
+						disx = winNum * winWidth;
+						carUl.style.left = -disx + 'px';
+					} else {
+						disx = winNum * winWidth;
+						carUl.style.left = -disx + 'px';
+					}
+				} else { //右滑
+					if(disx == 0) {
+						disx = 0;
+						carUl.style.left = -disx + 'px';
+					} else {
+						if(disx < winNum * winWidth - winWidth / 2) {
+							winNum--;
+							liNum--;
+							for(var i = 0; i < iconLi.length; i++) {
+								iconLi[i].style.background = 'white'
+							};
+							iconLi[liNum].style.background = 'black';
+							disx = winNum * winWidth;
+							carUl.style.left = -disx + 'px';
+						} else {
+							disx = winNum * winWidth;
+							carUl.style.left = -disx + 'px';
+						}
+					}
+				}
+			} else {}
+			timer = setInterval(move, 3500);
+			carUl.style.left = -disx + 'px';
+			carUl.style.transition = '0.5s';
+			console.log(winNum, num)
+		})
+	</script>
+
+</html>

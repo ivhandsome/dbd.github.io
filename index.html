@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title></title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=640,user-scalable=no">
+		<script src="js/jquery.js"></script>
+		<title>动画</title>
+		<style type="text/css">
+		.bigbox {
+		width: 100%;
+		height: 500px;
+		background: palegreen;
+		text-align: center;
+		line-height: 500px;
+		font-size: 40px;
+		transition: 2s;
+		transform: translateY(50%);
+		opacity: 0;
+		}
+		</style>
+		
+		
 	</head>
 	<body>
-		<div>
-			<ul>
-				<li>
-					dhjsadhksaj
-				</li>
-			</ul>
+		<div class="bigbox">
+			这是广告动画
 		</div>
 	</body>
+	<script type="text/javascript">
+		setTimeout(function(){
+			$('.bigbox').css('opacity',1);
+			setTimeout(function(){
+				window.location.href = 'index2.html'
+			},2000)
+		},20)
+		
+	</script>
 </html>
